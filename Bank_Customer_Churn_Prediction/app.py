@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+from pathlib import Path
 
 st.set_page_config(
     page_title="ChurnAI • Enterprise Analytics",
@@ -9,13 +10,10 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-
-# ---------- LOAD PRE-TRAINED MODEL PIPELINE ----------
 @st.cache_resource
 def load_model():
-    model_path = r"C:\Users\singh\Desktop\Education\ML PROJECTS\Bank Customer Churn Prediction\best_churn_pipeline.pkl"
+    model_path = Path(__file__).parent / "best_churn_pipeline.pkl"
     return joblib.load(model_path)
-
 
 model = load_model()
 
